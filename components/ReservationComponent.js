@@ -42,15 +42,6 @@ class Reservation extends Component {
         });
     }
 
-    handleReservation() {
-        console.log(JSON.stringify(this.state));
-        this.setState({
-            campers: 1,
-            hikeIn: false,
-            date: new Date(),
-            showCalendar: false
-        });
-    }
 
     render() {
         return (

@@ -13,7 +13,7 @@ export const addFavorite = campsiteId => ({
 });
 
 export const fetchComments = () => (dispatch) => {
-    return fetch(baseUrl * "comments")
+    return fetch(baseUrl + "comments")
         .then(
             (response) => {
                 if (response.ok) {
@@ -45,6 +45,24 @@ export const addComments = comments => ({
     type: ActionTypes.ADD_COMMENTS,
     payload: comments
 });
+
+export const addComment = comment => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: comment
+});
+
+export const postComment = (campsiteId, rating, author, text) => (dispatch) => {
+    const newComment = {
+        campsiteId,
+        rating,
+        author,
+        text,
+        date: new Date().toISOString()
+    }
+    setTimeout(() => {
+        dispatch(addComment(newComment));
+    }, 2000);
+}
 
 export const fetchCampsites = () => dispatch => {
 
