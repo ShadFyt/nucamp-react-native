@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     Text, View, ScrollView, FlatList,
     Modal, Button, StyleSheet,
-    Alert, PanResponder, PanResponder
+    Alert, PanResponder,
 } from 'react-native';
 import { Card, Icon, Rating, Input } from 'react-native-elements';
 import { postFavorite, postComment } from '../redux/ActionCreators';
@@ -53,10 +53,15 @@ function RenderComments({ comments }) {
 
 function RenderCampsite({ campsite, favorite, markFavorite, onShowModal }) {
 
+    const view = React.createRef();
     const recognizeDrag = ({ dx }) => (dx < -200) ? true : false;
 
     const panResponder = PanResponder.create({
         onStartShouldSetPanResponder: () => true,
+        onPanResponderGrant: () => {
+            view.current.rubberBand(1000)
+                .then(endState => console.log(endState.finished ? 'finished' : 'canceled'));
+        },
         onPanResponderEnd: (e, gestureState) => {
             console.log("pan responder end", gestureState);
             if (recognizeDrag(gestureState)) {
@@ -85,7 +90,13 @@ function RenderCampsite({ campsite, favorite, markFavorite, onShowModal }) {
 
     if (campsite) {
         return (
-            <Animatable.View animation='fadeInDown' duration={2000} delay={...panResponder.panHandlers}>
+            <Animatable.View
+                animation='fadeInDown'
+                duration={2000}
+                delay={1000}
+                ref={view}
+                {...panResponder.panHandlers}
+            >
                 <Card featuredTitle={campsite.name} image={{ uri: baseUrl + campsite.image }}>
                     <Text style={{ margin: 10 }}>{campsite.description}</Text>
                     <View style={styles.cardRow}>
