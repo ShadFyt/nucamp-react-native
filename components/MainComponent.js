@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { View, Platform, StyleSheet, ScrollView, Text, Image, ToastAndroid, Alert } from 'react-native';
-import { createStackNavigator } from 'react-navigation-stack';
-import { createAppContainer } from 'react-navigation';
-import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
-import Constants from 'expo-constants';
-import { Icon } from 'react-native-elements';
-import SafeAreaView from 'react-native-safe-area-view';
+import { View, Platform, StyleSheet, ScrollView, Text, Image, ToastAndroid, Alert } from "react-native";
+import { createStackNavigator } from "react-navigation-stack";
+import { createAppContainer } from "react-navigation";
+import { createDrawerNavigator, DrawerItems } from "react-navigation-drawer";
+import Constants from "expo-constants";
+import { Icon } from "react-native-elements";
+import SafeAreaView from "react-native-safe-area-view";
 
 import Directory from "./DirectoryComponent";
 import CampsiteInfo from "./CampsiteInfoComponent";
@@ -13,14 +13,14 @@ import Home from "./HomeComponent";
 import About from "./AboutComponent";
 import Contact from "./ContactComponent";
 import Reservation from "./ReservationComponent";
-import Favorites from './FavoritesComponent';
-import Login from './LoginComponent';
-import { connect } from 'react-redux';
+import Favorites from "./FavoritesComponent";
+import Login from "./LoginComponent";
+import { connect } from "react-redux";
 import {
     fetchCampsites, fetchComments, fetchPromotions,
     fetchPartners
-} from '../redux/ActionCreators';
-import NetInfo from '@react-native-community/netinfo';
+} from "../redux/ActionCreators";
+import NetInfo from "@react-native-community/netinfo";
 
 const mapDispatchToProps = {
     fetchCampsites,
@@ -89,15 +89,15 @@ const AboutNavigator = createStackNavigator(
     {
         defaultNavigationOptions: ({ navigation }) => ({
             headerStyle: {
-                backgroundColor: '#5637DD'
+                backgroundColor: "#5637DD"
             },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
             headerTitleStyle: {
-                color: '#fff'
+                color: "#fff"
             },
             headerLeft: <Icon
-                name='info-circle'
-                type='font-awesome'
+                name="info-circle"
+                type="font-awesome"
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
             />
@@ -111,15 +111,15 @@ const ContactNavigator = createStackNavigator(
     {
         defaultNavigationOptions: ({ navigation }) => ({
             headerStyle: {
-                backgroundColor: '#5637DD'
+                backgroundColor: "#5637DD"
             },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
             headerTitleStyle: {
-                color: '#fff'
+                color: "#fff"
             },
             headerLeft: <Icon
-                name='address-card'
-                type='font-awesome'
+                name="address-card"
+                type="font-awesome"
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
             />
@@ -134,15 +134,15 @@ const ReservationNavigator = createStackNavigator(
     {
         defaultNavigationOptions: ({ navigation }) => ({
             headerStyle: {
-                backgroundColor: '#5637DD'
+                backgroundColor: "#5637DD"
             },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
             headerTitleStyle: {
-                color: '#fff'
+                color: "#fff"
             },
             headerLeft: <Icon
-                name='tree'
-                type='font-awesome'
+                name="tree"
+                type="font-awesome"
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
             />
@@ -157,15 +157,15 @@ const FavoritesNavigator = createStackNavigator(
     {
         defaultNavigationOptions: ({ navigation }) => ({
             headerStyle: {
-                backgroundColor: '#5637DD'
+                backgroundColor: "#5637DD"
             },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
             headerTitleStyle: {
-                color: '#fff'
+                color: "#fff"
             },
             headerLeft: <Icon
-                name='heart'
-                type='font-awesome'
+                name="heart"
+                type="font-awesome"
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
             />
@@ -180,15 +180,15 @@ const LoginNavigator = createStackNavigator(
     {
         defaultNavigationOptions: ({ navigation }) => ({
             headerStyle: {
-                backgroundColor: '#5637DD'
+                backgroundColor: "#5637DD"
             },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
             headerTitleStyle: {
-                color: '#fff'
+                color: "#fff"
             },
             headerLeft: <Icon
-                name='sign-in'
-                type='font-awesome'
+                name="sign-in"
+                type="font-awesome"
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
             />
@@ -200,10 +200,10 @@ const CustomDrawerContentComponent = props => (
     <ScrollView>
         <SafeAreaView
             style={styles.container}
-            forceInset={{ top: 'always', horizontal: 'never' }}>
+            forceInset={{ top: "always", horizontal: "never" }}>
             <View style={styles.drawerHeader}>
                 <View style={{ flex: 1 }}>
-                    <Image source={require('./images/logo.png')} style={styles.drawerImage} />
+                    <Image source={require("./images/logo.png")} style={styles.drawerImage} />
                 </View>
                 <View style={{ flex: 2 }}>
                     <Text style={styles.drawerHeaderText}>NuCamp</Text>
@@ -221,8 +221,8 @@ const MainNavigator = createDrawerNavigator(
             navigationOptions: {
                 drawerIcon: ({ tintColor }) => (
                     <Icon
-                        name='sign-in'
-                        type='font-awesome'
+                        name="sign-in"
+                        type="font-awesome"
                         size={24}
                         color={tintColor}
                     />
@@ -234,8 +234,8 @@ const MainNavigator = createDrawerNavigator(
             navigationOptions: {
                 drawerIcon: ({ tintColor }) => (
                     <Icon
-                        name='home'
-                        type='font-awesome'
+                        name="home"
+                        type="font-awesome"
                         size={24}
                         color={tintColor}
                     />
@@ -247,8 +247,8 @@ const MainNavigator = createDrawerNavigator(
             navigationOptions: {
                 drawerIcon: ({ tintColor }) => (
                     <Icon
-                        name='list'
-                        type='font-awesome'
+                        name="list"
+                        type="font-awesome"
                         size={24}
                         color={tintColor}
                     />
@@ -258,11 +258,11 @@ const MainNavigator = createDrawerNavigator(
         Reservation: {
             screen: ReservationNavigator,
             navigationOptions: {
-                drawerLabel: 'Reserve Campsite',
+                drawerLabel: "Reserve Campsite",
                 drawerIcon: ({ tintColor }) => (
                     <Icon
-                        name='tree'
-                        type='font-awesome'
+                        name="tree"
+                        type="font-awesome"
                         size={24}
                         color={tintColor}
                     />
@@ -272,11 +272,11 @@ const MainNavigator = createDrawerNavigator(
         Favorites: {
             screen: FavoritesNavigator,
             navigationOptions: {
-                drawerLabel: 'My Favorites',
+                drawerLabel: "My Favorites",
                 drawerIcon: ({ tintColor }) => (
                     <Icon
-                        name='heart'
-                        type='font-awesome'
+                        name="heart"
+                        type="font-awesome"
                         size={24}
                         color={tintColor}
                     />
@@ -286,11 +286,11 @@ const MainNavigator = createDrawerNavigator(
         About: {
             screen: AboutNavigator,
             navigationOptions: {
-                drawerLabel: 'About Us',
+                drawerLabel: "About Us",
                 drawerIcon: ({ tintColor }) => (
                     <Icon
-                        name='info-circle'
-                        type='font-awesome'
+                        name="info-circle"
+                        type="font-awesome"
                         size={24}
                         color={tintColor}
                     />
@@ -300,11 +300,11 @@ const MainNavigator = createDrawerNavigator(
         Contact: {
             screen: ContactNavigator,
             navigationOptions: {
-                drawerLabel: 'Contact Us',
+                drawerLabel: "Contact Us",
                 drawerIcon: ({ tintColor }) => (
                     <Icon
-                        name='address-card'
-                        type='font-awesome'
+                        name="address-card"
+                        type="font-awesome"
                         size={24}
                         color={tintColor}
                     />
@@ -313,8 +313,8 @@ const MainNavigator = createDrawerNavigator(
         },
     },
     {
-        initialRouteName: 'Home',
-        drawerBackgroundColor: '#CEC8FF',
+        initialRouteName: "Home",
+        drawerBackgroundColor: "#CEC8FF",
         contentComponent: CustomDrawerContentComponent
     },
 
@@ -329,12 +329,13 @@ class Main extends Component {
         this.props.fetchPromotions();
         this.props.fetchPartners();
 
-        NetInfo.fetch().then(connectionInfo => {
+        showNetInfo = async () => {
+            const connectionInfo = await NetInfo.fetch();
             (Platform.OS === "ios")
-                ? Alert.alert('Initial Network Connectivity Type:', connectionInfo.type)
-                : ToastAndroid.show('Initial Network Connectivity Type: ' +
+                ? Alert.alert("Initial Network Connectivity Type:", connectionInfo.type)
+                : ToastAndroid.show("Initial Network Connectivity Type: " +
                     connectionInfo.type, ToastAndroid.LONG);
-        })
+        }
 
         this.unsubscribeNetInfo = NetInfo.addEventListener(connectionInfo => {
             this.handleConnectivityChange(connectionInfo);
@@ -346,26 +347,25 @@ class Main extends Component {
     }
 
     handleConnectivityChange = connectionInfo => {
-        let connectionMsg = 'You are now connected to an active network.';
+        let connectionMsg = "You are now connected to an active network.";
         switch (connectionInfo.type) {
-            case 'none':
-                connectionMsg = 'No network connection is active.';
+            case "none":
+                connectionMsg = "No network connection is active.";
                 break;
-            case 'unknown':
-                connectionMsg = 'The network connection state is now unknown.';
+            case "unknown":
+                connectionMsg = "The network connection state is now unknown.";
                 break;
-            case 'cellular':
-                connectionMsg = 'You are now connected to a cellular network.';
+            case "cellular":
+                connectionMsg = "You are now connected to a cellular network.";
                 break;
-            case 'wifi':
-                connectionMsg = 'You are now connected to a WiFi network.';
+            case "wifi":
+                connectionMsg = "You are now connected to a WiFi network.";
                 break;
         }
-        (Platform.OS === 'ios')
-            ? Alert.alert('Connection change:', connectionMsg)
+        (Platform.OS === "ios")
+            ? Alert.alert("Connection change:", connectionMsg)
             : ToastAndroid.show(connectionMsg, ToastAndroid.LONG);
     }
-
 
     render() {
         return (
@@ -384,17 +384,17 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     drawerHeader: {
-        backgroundColor: '#5637DD',
+        backgroundColor: "#5637DD",
         height: 140,
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: "row"
     },
     drawerHeaderText: {
-        color: '#fff',
+        color: "#fff",
         fontSize: 24,
-        fontWeight: 'bold'
+        fontWeight: "bold"
     },
     drawerImage: {
         margin: 10,
@@ -403,7 +403,7 @@ const styles = StyleSheet.create({
     },
     stackIcon: {
         marginLeft: 10,
-        color: '#fff',
+        color: "#fff",
         fontSize: 24
     }
 });
